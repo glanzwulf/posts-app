@@ -5,8 +5,9 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
 import { StatusBar } from 'expo-status-bar';
-import HomeScreen from './screens/HomeScreen'
 import { Button } from 'react-native'
+import HomeScreen from './screens/HomeScreen'
+import AddPost from './screens/AddPost'
 
 const Stack = createStackNavigator();
 
@@ -32,16 +33,37 @@ export default function App() {
           <Stack.Screen 
             name="Home"
             component={HomeScreen} 
-            options={{
+            options={({ navigation }) => ({
               headerTitle: 'Posts App',
               headerRight: () => (
                 <Button
-                  onPress={() => alert('This will open add menu')}
+                  onPress={() => navigation.navigate('AddPost')}
                   title="Add Post"
                   color="#00cc00"
                 />
               ),
-            }}
+            })}
+          />
+          <Stack.Screen 
+            name="AddPost"
+            component={AddPost} 
+            options={({ navigation }) => ({
+              headerTitle: 'Add post',
+              headerLeft: () => (
+                <Button
+                  onPress={navigation.goBack}
+                  title="Back"
+                  color="#FF0000"
+                />
+              ),
+              headerRight: () => (
+                <Button
+                  onPress={() => alert('This will Submit')}
+                  title="Submit"
+                  color="#00cc00"
+                />
+              ),
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>

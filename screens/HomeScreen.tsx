@@ -1,9 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { Text, View, SafeAreaView, FlatList, StyleSheet } from 'react-native'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
+import { Text, View, SafeAreaView, FlatList, StyleSheet, Button } from 'react-native'
 import axios from 'axios'
 
-export default function HomeScreen () {
+export default function HomeScreen({ navigation }) {
   const [postsData, setPostsData] = useState([])
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          onPress={() => navigation.navigate('AddPost')}
+          title="Add Post"
+          color="#00cc00"
+        />
+      )
+    });
+  }, [navigation])
 
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/posts')

@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { View, SafeAreaView, StyleSheet, TextInput, Button } from 'react-native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 
-export default function AddPost () {
+export default function AddPost({ navigation }) {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          onPress={() => alert('This will Submit')}
+          title="Submit Post"
+          color="#00cc00"
+        />
+      )
+    });
+  }, [navigation])
 
   const initialValues = {
     title: '',
