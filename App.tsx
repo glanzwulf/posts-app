@@ -8,6 +8,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Button } from 'react-native'
 import HomeScreen from './screens/HomeScreen'
 import AddPost from './screens/AddPost'
+import ViewPost from './screens/ViewPost'
 
 const Stack = createStackNavigator();
 
@@ -60,6 +61,27 @@ export default function App() {
                 <Button
                   onPress={() => alert('This will Submit')}
                   title="Submit"
+                  color="#00cc00"
+                />
+              ),
+            })}
+          />
+          <Stack.Screen 
+            name="ViewPost"
+            component={ViewPost} 
+            options={({ navigation }) => ({
+              headerTitle: 'View post',
+              headerLeft: () => (
+                <Button
+                  onPress={navigation.goBack}
+                  title="Back"
+                  color="#FF0000"
+                />
+              ),
+              headerRight: () => (
+                <Button
+                  onPress={() => alert('This will Eit')}
+                  title="Edit"
                   color="#00cc00"
                 />
               ),

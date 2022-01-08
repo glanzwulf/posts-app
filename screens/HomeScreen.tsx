@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { Text, View, SafeAreaView, FlatList, StyleSheet, Button } from 'react-native'
+import { Text, View, SafeAreaView, FlatList, StyleSheet, Button, TouchableOpacity } from 'react-native'
 import axios from 'axios'
 
 export default function HomeScreen({ navigation }) {
@@ -30,7 +30,10 @@ export default function HomeScreen({ navigation }) {
   )
 
   const renderItem = ({ item } : { item: any}) => {
-    return <Item title={item.title} userId={item.userId} />
+    return (
+      <TouchableOpacity onPress={() => navigation.navigate('ViewPost', {id: item.id})}>
+        <Item title={item.title} userId={item.userId} />
+      </TouchableOpacity>)
   }
 
   return (
