@@ -1,7 +1,8 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect  } from 'react'
 import { View, SafeAreaView, StyleSheet, TextInput, Button } from 'react-native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import axios from 'axios'
 
 export default function AddPost({ navigation }) {
   useLayoutEffect(() => {
@@ -33,8 +34,8 @@ export default function AddPost({ navigation }) {
               .required('Required'),
           })}
           onSubmit ={(values, {resetForm}) =>{
-            console.log(values)
             alert('Submitted')
+            axios.post(`https://jsonplaceholder.typicode.com/posts`, { title: values.title, body: values.body, userId: 0 })
             resetForm({values: initialValues})
           }}
           >
