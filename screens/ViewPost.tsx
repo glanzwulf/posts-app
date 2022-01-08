@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { Text, View, SafeAreaView, FlatList, StyleSheet, Button } from 'react-native'
+import { Text, View, SafeAreaView, StyleSheet, Button } from 'react-native'
 import axios from 'axios'
 
 export default function ViewPost({ navigation, route }) {
@@ -15,7 +15,7 @@ export default function ViewPost({ navigation, route }) {
     navigation.setOptions({
       headerRight: () => (
         <Button
-          onPress={() => alert('This will edit')}
+          onPress={() => navigation.navigate('EditPost', {id: id})}
           title="Edit Post"
           color="#00cc00"
         />

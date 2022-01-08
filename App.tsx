@@ -9,6 +9,7 @@ import { Button } from 'react-native'
 import HomeScreen from './screens/HomeScreen'
 import AddPost from './screens/AddPost'
 import ViewPost from './screens/ViewPost'
+import EditPost from './screens/EditPost'
 
 const Stack = createStackNavigator();
 
@@ -57,13 +58,6 @@ export default function App() {
                   color="#FF0000"
                 />
               ),
-              headerRight: () => (
-                <Button
-                  onPress={() => alert('This will Submit')}
-                  title="Submit"
-                  color="#00cc00"
-                />
-              ),
             })}
           />
           <Stack.Screen 
@@ -78,11 +72,18 @@ export default function App() {
                   color="#FF0000"
                 />
               ),
-              headerRight: () => (
+            })}
+          />
+          <Stack.Screen 
+            name="EditPost"
+            component={EditPost} 
+            options={({ navigation }) => ({
+              headerTitle: 'View post',
+              headerLeft: () => (
                 <Button
-                  onPress={() => alert('This will Eit')}
-                  title="Edit"
-                  color="#00cc00"
+                  onPress={navigation.goBack}
+                  title="Back"
+                  color="#FF0000"
                 />
               ),
             })}
