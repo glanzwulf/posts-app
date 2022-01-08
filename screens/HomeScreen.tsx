@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, SafeAreaView, FlatList, StyleSheet, Button } from 'react-native'
+import { Text, View, SafeAreaView, FlatList, StyleSheet } from 'react-native'
 import axios from 'axios'
 
 export default function HomeScreen () {
   const [postsData, setPostsData] = useState([])
-  const [filterNumber, setFilterNumber] = useState('0')
-  const [showAll, setShowAll] = useState(true)
 
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -20,42 +18,11 @@ export default function HomeScreen () {
   )
 
   const renderItem = ({ item } : { item: any}) => {
-    if (showAll) {
-      return <Item title={item.title} userId={item.userId} />
-    } else {
-      if (item.userId === filterNumber) {
-        return <Item title={item.title} userId={item.userId} />
-      }
-    } 
-  }
-
-  function filterOut(arg: number){
-    setShowAll(false);
-    setFilterNumber(arg);
+    return <Item title={item.title} userId={item.userId} />
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Button
-        onPress={() => 
-          setShowAll(true)
-        }
-        title="Clear Filter"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <Button
-        onPress={() => filterOut(2)}
-        title="Filter only by user #2"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <Button
-        onPress={() => filterOut(5)}
-        title="Filter only by user #5"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
       <FlatList
         data={postsData}
         renderItem={renderItem}
