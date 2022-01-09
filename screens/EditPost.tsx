@@ -1,22 +1,10 @@
 import React, { useEffect, useLayoutEffect, useState  } from 'react'
-import { View, SafeAreaView, StyleSheet, TextInput, Button } from 'react-native'
+import { View, SafeAreaView, StyleSheet, TextInput, Button, Alert } from 'react-native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 
 export default function EditPost({ navigation, route }) {
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <Button
-          onPress={() => alert('This will edit')}
-          title="Edit Post"
-          color="#00cc00"
-        />
-      )
-    });
-  }, [navigation])
-  
   const [postsData, setPostsData] = useState([])
   const { id } = route.params
 
@@ -28,7 +16,28 @@ export default function EditPost({ navigation, route }) {
   const initialValues = {
     title: postsData.title,
     body: postsData.body,
+    id: postsData.id,
   }
+
+  const editPost = (values: { title: string; body: string; id?: number }) => {
+    return Alert.alert(
+      "Edit Post?",
+      "You will be submitting changes to this post. This action is irreversible",
+      [
+        {
+          text: "Yes",
+          onPress: () => {
+            axios.put(`https://jsonplaceholder.typicode.com/posts/${values.id}`, { title: values.title, body: values.body, userId: 0 })
+            alert('Edited')
+            navigation.navigate('ViewPost', {id: id})
+          },
+        },
+        {
+          text: "No",
+        },
+      ]
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -42,10 +51,8 @@ export default function EditPost({ navigation, route }) {
             body: Yup.string()
               .required('Required'),
           })}
-          onSubmit ={(values, {resetForm}) =>{
-            axios.put(`https://jsonplaceholder.typicode.com/posts/${values.id}`, { title: values.title, body: values.body, userId: 0 })
-            alert('Edited')
-            navigation.navigate('ViewPost', {id: id})
+          onSubmit ={(values) =>{
+            editPost(values)
           }}
           >
           {props => (
@@ -67,7 +74,7 @@ export default function EditPost({ navigation, route }) {
               />
               <Button
                 onPress={props.handleSubmit}
-                title="Submit"
+                title="Save"
                 color="#00cc00"
               />
             </View>
