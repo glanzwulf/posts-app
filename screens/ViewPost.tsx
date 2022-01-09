@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { Text, View, SafeAreaView, StyleSheet, Button } from 'react-native'
+import { Text, View, SafeAreaView, StyleSheet, Button, Alert } from 'react-native'
 import axios from 'axios'
 
 export default function ViewPost({ navigation, route }) {
@@ -23,6 +23,26 @@ export default function ViewPost({ navigation, route }) {
     });
   }, [navigation])
 
+  const deletePost = (values: { id: number }) => {
+    return Alert.alert(
+      "Delete Post?",
+      "You are about to delete this post. This action is irreversible",
+      [
+        {
+          text: "Yes",
+          onPress: () => {
+            axios.delete(`https://jsonplaceholder.typicode.com/posts/${values.id}`)
+            alert('Deleted')
+            navigation.navigate('Homescreen')
+          },
+        },
+        {
+          text: "No",
+        },
+      ]
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.item}>
@@ -32,6 +52,7 @@ export default function ViewPost({ navigation, route }) {
         <Text style={styles.bodyHeader}>body: </Text>
         <Text style={styles.body}>{postsData.body}</Text>
       </View>
+      <Button title='Delete Post' onPress={deletePost} color="#FF0000"/>
     </SafeAreaView>
   )
 }
