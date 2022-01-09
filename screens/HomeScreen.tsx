@@ -18,9 +18,15 @@ export default function HomeScreen({ navigation }) {
   }, [navigation])
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then(response => setPostsData(response.data))
+    loadPostData()
   }, [])
+
+  const loadPostData = () => {
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+    .then((response) => {
+      setPostsData(response.data), 
+    })
+  }
 
   const Item = ({ title, userId } : { title: string, userId: number }) => (
     <View style={styles.item}>
