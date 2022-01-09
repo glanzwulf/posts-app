@@ -1,8 +1,9 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { Text, View, SafeAreaView, FlatList, StyleSheet, Button, TouchableOpacity } from 'react-native'
+import { Text, View, SafeAreaView, FlatList, StyleSheet, Button, TouchableOpacity, RefreshControl } from 'react-native'
 import axios from 'axios'
 
 export default function HomeScreen({ navigation }) {
+  const [refreshing, setRefreshing] = useState(false)
   const [postsData, setPostsData] = useState([])
 
   useLayoutEffect(() => {
@@ -25,6 +26,7 @@ export default function HomeScreen({ navigation }) {
     axios.get('https://jsonplaceholder.typicode.com/posts')
     .then((response) => {
       setPostsData(response.data), 
+      setRefreshing(false)
     })
   }
 
@@ -48,6 +50,9 @@ export default function HomeScreen({ navigation }) {
         data={postsData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={loadPostData} />
+        }
       />
     </SafeAreaView>
   )
