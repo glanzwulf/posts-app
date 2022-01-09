@@ -13,7 +13,7 @@ const StackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen 
-        name="Home"
+        name="Homescreen"
         component={HomeScreen} 
         options={({ navigation }) => ({
           headerTitle: 'Posts App',
