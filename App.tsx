@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
 import { StatusBar } from 'expo-status-bar';
-import StackNavigator from './navigation/StackNavigator'
+import DrawerMenu from './navigation/DrawerMenu'
 
 const Stack = createStackNavigator();
 
@@ -27,7 +27,7 @@ export default function App() {
   return (
     <AppearanceProvider>
       <NavigationContainer theme={scheme === 'dark' ? CustomDark : DefaultTheme}>
-        <StackNavigator />
+        <DrawerMenu />
       </NavigationContainer>
       <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
     </AppearanceProvider>

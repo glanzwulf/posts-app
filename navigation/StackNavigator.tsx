@@ -1,4 +1,3 @@
-
 import 'react-native-gesture-handler'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -10,9 +9,9 @@ import EditPost from '../screens/EditPost'
 
 const Stack = createStackNavigator();
 
-export default function StackNavigator() {
+const StackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator>
       <Stack.Screen 
         name="Home"
         component={HomeScreen} 
@@ -72,3 +71,5 @@ export default function StackNavigator() {
     </Stack.Navigator>
   );
 }
+
+export { StackNavigator }
