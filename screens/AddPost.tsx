@@ -1,4 +1,4 @@
-import React, { useLayoutEffect  } from 'react'
+import React from 'react'
 import { View, SafeAreaView, StyleSheet, TextInput, Button } from 'react-native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
@@ -24,7 +24,7 @@ export default function AddPost({ navigation }) {
           onSubmit ={(values, {resetForm}) =>{
             axios.post(`https://jsonplaceholder.typicode.com/posts`, { title: values.title, body: values.body, userId: 0 })
             resetForm({values: initialValues})
-            navigation.navigate('Home')
+            navigation.navigate('Homescreen')
             alert('Submitted')
           }}
           >
