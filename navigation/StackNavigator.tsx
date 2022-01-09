@@ -58,7 +58,7 @@ const StackNavigator = () => {
         name="EditPost"
         component={EditPost} 
         options={({ navigation }) => ({
-          headerTitle: 'View post',
+          headerTitle: 'Edit post',
           headerLeft: () => (
             <Button
               onPress={navigation.goBack}
