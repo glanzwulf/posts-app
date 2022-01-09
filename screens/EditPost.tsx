@@ -1,5 +1,5 @@
-import React, { useEffect, useLayoutEffect, useState  } from 'react'
-import { View, SafeAreaView, StyleSheet, TextInput, Button, Alert } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, SafeAreaView, StyleSheet, TextInput, Button, Text, Alert } from 'react-native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
@@ -57,19 +57,23 @@ export default function EditPost({ navigation, route }) {
           >
           {props => (
             <View>
+              <Text style={styles.header}>Title:</Text>
               <TextInput
                 onChangeText={props.handleChange('title')}
                 onBlur={props.handleBlur('title')}
                 value={props.values.title}
                 autoFocus
                 placeholder="Title"
+                multiline={true}
                 style={styles.input}
               />
+              <Text style={styles.header}>Body:</Text>
               <TextInput
                 onChangeText={props.handleChange('body')}
                 onBlur={props.handleBlur('body')}
                 value={props.values.body}
                 placeholder="Your message"
+                multiline={true}
                 style={styles.bodyInput}
               />
               <Button
@@ -91,6 +95,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ecf0f1',
     padding: 8,
   },
+  header:{
+    paddingVertical: 8,
+    fontSize: 15,
+  },
   title: {
     margin: 24,
     fontSize: 24,
@@ -104,8 +112,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   input: {
-    height: 50,
-    paddingHorizontal: 8,
+    maxHeight: 150,
+    padding: 8,
     width: '100%',
     borderColor: '#ddd',
     borderWidth: 1,
@@ -114,7 +122,7 @@ const styles = StyleSheet.create({
   },
   bodyInput: {
     height: 150,
-    paddingHorizontal: 8,
+    padding: 8,
     width: '100%',
     borderColor: '#ddd',
     borderWidth: 1,
