@@ -5,18 +5,6 @@ import * as Yup from 'yup'
 import axios from 'axios'
 
 export default function AddPost({ navigation }) {
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <Button
-          onPress={() => alert('This will Submit')}
-          title="Submit Post"
-          color="#00cc00"
-        />
-      )
-    });
-  }, [navigation])
-
   const initialValues = {
     title: '',
     body: '',
@@ -34,9 +22,10 @@ export default function AddPost({ navigation }) {
               .required('Required'),
           })}
           onSubmit ={(values, {resetForm}) =>{
-            alert('Submitted')
             axios.post(`https://jsonplaceholder.typicode.com/posts`, { title: values.title, body: values.body, userId: 0 })
             resetForm({values: initialValues})
+            navigation.navigate('Home')
+            alert('Submitted')
           }}
           >
           {props => (
