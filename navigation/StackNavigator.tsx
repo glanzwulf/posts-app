@@ -63,10 +63,16 @@ const StackNavigator = () => {
             />
           ),
           headerRight: () => (
-            <Button 
-              type='darklight'
-              onPress={() => alert('change to dark mode')}
+            <View style={{flexDirection:"row"}}>
+              <Button
+                type='darklight'
+                onPress={() => alert('change to dark mode')}
+              />
+              <Button 
+              type='edit'
+              onPress={() => navigation.navigate('EditPost', {id: id})}
             />
+            </View>
           ),
         })}
       />
@@ -90,7 +96,7 @@ const StackNavigator = () => {
         })}
       />
     </Stack.Navigator>
-  );
+  )
 }
 
 export { StackNavigator }
