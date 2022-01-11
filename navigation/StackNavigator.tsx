@@ -7,10 +7,13 @@ import AddPost from '../screens/AddPost'
 import ViewPost from '../screens/ViewPost'
 import EditPost from '../screens/EditPost'
 import Button from '../components/Button'
+import { ThemeContext } from '../App'
 
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
+  const { setTheme, theme } = React.useContext(ThemeContext)
+
   return (
     <Stack.Navigator>
       <Stack.Screen 
@@ -22,7 +25,7 @@ const StackNavigator = () => {
             <View style={{flexDirection:"row"}}>
               <Button
                 type='darklight'
-                onPress={() => alert('change to dark mode')}
+                onPress={() => setTheme(theme === 'Light' ? 'Dark' : 'Light')}
               />
               <Button
                 type='add'
@@ -43,12 +46,6 @@ const StackNavigator = () => {
               onPress={navigation.goBack}
             />
           ),
-          headerRight: () => (
-            <Button 
-              type='darklight'
-              onPress={() => alert('change to dark mode')}
-            />
-          ),
         })}
       />
       <Stack.Screen 
@@ -56,24 +53,6 @@ const StackNavigator = () => {
         component={ViewPost} 
         options={({ navigation }) => ({
           headerTitle: 'Post',
-          headerLeft: () => (
-            <Button
-              type='back' 
-              onPress={navigation.goBack}
-            />
-          ),
-          headerRight: () => (
-            <View style={{flexDirection:"row"}}>
-              <Button
-                type='darklight'
-                onPress={() => alert('change to dark mode')}
-              />
-              <Button 
-              type='edit'
-              onPress={() => navigation.navigate('EditPost', {id: id})}
-            />
-            </View>
-          ),
         })}
       />
       <Stack.Screen 
@@ -85,12 +64,6 @@ const StackNavigator = () => {
             <Button
               type='back' 
               onPress={navigation.goBack}
-            />
-          ),
-          headerRight: () => (
-            <Button 
-              type='darklight'
-              onPress={() => alert('change to dark mode')}
             />
           ),
         })}

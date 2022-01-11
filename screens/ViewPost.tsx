@@ -14,18 +14,20 @@ export default function ViewPost({ navigation, route }) {
   
   useLayoutEffect(() => {
     navigation.setOptions({
+      headerLeft: () => (
+        <Button
+          type='back' 
+          onPress={navigation.goBack}
+        />
+      ),
       headerRight: () => (
         <View style={{flexDirection:"row"}}>
-          <Button
-            type='darklight' 
-            onPress={() => alert('change to dark mode')}
-          />
-          <Button
+          <Button 
             type='edit'
             onPress={() => navigation.navigate('EditPost', {id: id})}
           />
         </View>
-      )
+      ),
     });
   }, [navigation])
 

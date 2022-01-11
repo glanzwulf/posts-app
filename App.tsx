@@ -1,13 +1,15 @@
 
 import 'react-native-gesture-handler'
-import React from 'react'
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
-import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
-import { StatusBar } from 'expo-status-bar';
+import React, { createContext, useState } from 'react'
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native'
+import { StatusBar } from 'expo-status-bar'
 import DrawerMenu from './navigation/DrawerMenu'
 
+export const ThemeContext = createContext()
+
 export default function App() {
-  const scheme = useColorScheme()
+  const [theme, setTheme] = useState('Light')
+  const themeData = { theme, setTheme }
 
   const CustomDark = {
     dark: true,
@@ -22,11 +24,11 @@ export default function App() {
   }
 
   return (
-    <AppearanceProvider>
-      <NavigationContainer theme={scheme === 'dark' ? CustomDark : DefaultTheme}>
+    <ThemeContext.Provider value={themeData}>
+      <NavigationContainer theme={theme == 'Light' ? DefaultTheme : DarkTheme}>
         <DrawerMenu />
       </NavigationContainer>
-      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
-    </AppearanceProvider>
+      <StatusBar style={theme === 'Light' ? 'dark' : 'light'} />
+    </ThemeContext.Provider>
   );
 }
