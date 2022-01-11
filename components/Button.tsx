@@ -40,6 +40,16 @@ const Button = ({ onPress, type } : ButtonProps) => (
         <Text style={styles.label}>Delete post</Text>
       </TouchableHighlight>
     </View>
+  ) : type === 'submit' ? (
+    <View style={[styles.container]}>
+      <TouchableHighlight
+        style={[styles.button]}
+        onPress={onPress}
+        underlayColor="#DDDDDD"
+      >
+        <Text style={[styles.label]}>Submit post</Text>
+      </TouchableHighlight>
+    </View>
   ) : type === 'save' ? (
     <View style={[styles.container]}>
       <TouchableHighlight
