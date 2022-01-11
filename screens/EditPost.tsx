@@ -4,10 +4,13 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 import Button from '../components/Button'
+import { useTheme } from '@react-navigation/native'
 
 export default function EditPost({ navigation, route }) {
   const [postsData, setPostsData] = useState([])
   const { id } = route.params
+  const { colors } = useTheme()
+  const styles = makeStyles(colors)
 
   useEffect(() => {
     axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
@@ -89,15 +92,15 @@ export default function EditPost({ navigation, route }) {
   )
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (colors: any) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ecf0f1',
     padding: 8,
   },
   header:{
     paddingVertical: 8,
     fontSize: 15,
+    color: colors.text
   },
   title: {
     margin: 24,

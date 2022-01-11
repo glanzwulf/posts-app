@@ -3,13 +3,18 @@ import { StyleSheet, TouchableHighlight, View, Text } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Feather } from '@expo/vector-icons' 
+import { useTheme } from '@react-navigation/native'
 
 interface ButtonProps {
   onPress: () => void,
   type: string,
 }
 
-const Button = ({ onPress, type } : ButtonProps) => (
+const Button = ({ onPress, type } : ButtonProps) => {
+  const { colors } = useTheme()
+  const styles = makeStyles(colors)
+  
+  return (
   type === 'add' ? (
     <View style={[styles.container]}>
       <TouchableHighlight
@@ -17,7 +22,7 @@ const Button = ({ onPress, type } : ButtonProps) => (
         onPress={onPress}
         underlayColor="#DDDDDD"
       >
-        <Ionicons name="add" size={28} color="#323232" />
+        <Ionicons name="add" size={28} style={[styles.icon]} />
       </TouchableHighlight>
     </View>
   ) : type === 'edit' ? (
@@ -27,7 +32,7 @@ const Button = ({ onPress, type } : ButtonProps) => (
         onPress={onPress}
         underlayColor="#DDDDDD"
       >
-        <Feather name="edit-3" size={23} color="#0a6194" />
+        <Feather name="edit-3" size={23} style={[styles.icon]} />
       </TouchableHighlight>
     </View>
   ) : type === 'delete' ? (
@@ -37,7 +42,7 @@ const Button = ({ onPress, type } : ButtonProps) => (
         onPress={onPress}
         underlayColor="#DDDDDD"
       >
-        <Text style={styles.label}>Delete post</Text>
+        <Text style={styles.deleteLabel}>Delete post</Text>
       </TouchableHighlight>
     </View>
   ) : type === 'submit' ? (
@@ -47,7 +52,7 @@ const Button = ({ onPress, type } : ButtonProps) => (
         onPress={onPress}
         underlayColor="#DDDDDD"
       >
-        <Text style={[styles.label]}>Submit post</Text>
+        <Text style={[styles.submitLabel]}>Submit post</Text>
       </TouchableHighlight>
     </View>
   ) : type === 'save' ? (
@@ -57,7 +62,7 @@ const Button = ({ onPress, type } : ButtonProps) => (
         onPress={onPress}
         underlayColor="#DDDDDD"
       >
-        <Text style={[styles.label]}>Save post</Text>
+        <Text style={[styles.saveLabel]}>Save post</Text>
       </TouchableHighlight>
     </View>
   ) : type === 'back' ? (
@@ -67,7 +72,7 @@ const Button = ({ onPress, type } : ButtonProps) => (
       onPress={onPress}
       underlayColor="#DDDDDD"
     >
-      <Ionicons name="arrow-back-sharp" size={28} color="#323232" />
+      <Ionicons name="arrow-back-sharp" size={28} style={[styles.icon]} />
     </TouchableHighlight>
   </View>
   ) : type === 'darklight' ? (
@@ -77,13 +82,14 @@ const Button = ({ onPress, type } : ButtonProps) => (
         onPress={onPress}
         underlayColor="#DDDDDD"
       >
-        <MaterialCommunityIcons name="theme-light-dark" size={24} color="black" />
+        <MaterialCommunityIcons name="theme-light-dark" size={24} style={[styles.icon]} />
       </TouchableHighlight>
     </View>
   ) : null
-)
+)}
 
-const styles = StyleSheet.create({
+const makeStyles = (colors: any) => StyleSheet.create({
+// const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -94,12 +100,35 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     paddingVertical: 8,
     paddingHorizontal: 12,
-    backgroundColor: '#ffffff',
+    color: colors.background
   },
-  label: {
-    color: '#ff0000',
+  deleteLabel: {
+    color: 'red',
     fontWeight: '700',
+    borderWidth: 2,
+    padding: 12,
+    borderRadius: 6,
+    borderColor: 'red',
   },
+  saveLabel: {
+    color: 'green',
+    fontWeight: '700',
+    borderWidth: 2,
+    padding: 12,
+    borderRadius: 6,
+    borderColor: 'green',
+  },
+  submitLabel: {
+    color: 'green',
+    fontWeight: '700',
+    borderWidth: 2,
+    padding: 12,
+    borderRadius: 6,
+    borderColor: 'green',
+  },
+  icon: {
+    color: colors.text,
+  }
 })
 
 export default Button

@@ -51,7 +51,7 @@ const StackNavigator = () => {
       <Stack.Screen 
         name="ViewPost"
         component={ViewPost} 
-        options={({ navigation }) => ({
+        options={() => ({
           headerTitle: 'Post',
         })}
       />

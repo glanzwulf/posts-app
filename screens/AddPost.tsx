@@ -4,12 +4,15 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 import Button from '../components/Button'
+import { useTheme } from '@react-navigation/native'
 
 export default function AddPost({ navigation }) {
   const initialValues = {
     title: '',
     body: '',
   }
+  const { colors } = useTheme()
+  const styles = makeStyles(colors)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -58,10 +61,9 @@ export default function AddPost({ navigation }) {
   )
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (colors: any) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ecf0f1',
     padding: 8,
   },
   title: {
