@@ -72,7 +72,7 @@ const Button = ({ onPress, type } : ButtonProps) => {
       onPress={onPress}
       underlayColor="#DDDDDD"
     >
-      <Ionicons name="arrow-back-sharp" size={28} style={[styles.icon]} />
+      <Ionicons name="arrow-back-sharp" size={24} style={[styles.icon]} />
     </TouchableHighlight>
   </View>
   ) : type === 'darklight' ? (
@@ -83,6 +83,16 @@ const Button = ({ onPress, type } : ButtonProps) => {
         underlayColor="#DDDDDD"
       >
         <MaterialCommunityIcons name="theme-light-dark" size={24} style={[styles.icon]} />
+      </TouchableHighlight>
+    </View>
+  ) : type === 'filter' ? (
+    <View style={[styles.container]}>
+      <TouchableHighlight
+        style={[styles.button]}
+        onPress={onPress}
+        underlayColor="#DDDDDD"
+      >
+        <Ionicons name="filter-sharp" size={24} cstyle={[styles.icon]} />
       </TouchableHighlight>
     </View>
   ) : null
