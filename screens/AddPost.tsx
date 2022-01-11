@@ -86,6 +86,7 @@ const makeStyles = (colors: any) => StyleSheet.create({
     borderWidth: 1,
     backgroundColor: '#fff',
     marginBottom: 5,
+    borderRadius: 6,
   },
   bodyInput: {
     height: 150,
@@ -95,5 +96,6 @@ const makeStyles = (colors: any) => StyleSheet.create({
     borderWidth: 1,
     backgroundColor: '#fff',
     marginBottom: 5,
+    borderRadius: 6,
   },
 })
