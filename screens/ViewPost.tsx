@@ -1,9 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { Text, View, SafeAreaView, StyleSheet, Alert } from 'react-native'
 import axios from 'axios'
-import EditButton from '../components/EditButton';
-import DeleteButton from '../components/DeleteButton';
-import DarkMode from '../components/DarkMode';
+import Button from '../components/Button'
 
 export default function ViewPost({ navigation, route }) {
   const [postsData, setPostsData] = useState([])
@@ -18,10 +16,12 @@ export default function ViewPost({ navigation, route }) {
     navigation.setOptions({
       headerRight: () => (
         <View style={{flexDirection:"row"}}>
-          <DarkMode 
+          <Button
+            type='darklight' 
             onPress={() => alert('change to dark mode')}
           />
-          <EditButton
+          <Button
+            type='edit'
             onPress={() => navigation.navigate('EditPost', {id: id})}
           />
         </View>
@@ -46,8 +46,8 @@ export default function ViewPost({ navigation, route }) {
           text: "No",
         },
       ]
-    );
-  };
+    )
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -58,7 +58,10 @@ export default function ViewPost({ navigation, route }) {
         <Text style={styles.bodyHeader}>body: </Text>
         <Text style={styles.body}>{postsData.body}</Text>
       </View>
-      <DeleteButton onPress={deletePost}/>
+      <Button 
+        type='delete'
+        onPress={deletePost}
+      />
     </SafeAreaView>
   )
 }

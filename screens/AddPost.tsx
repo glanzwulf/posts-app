@@ -3,7 +3,7 @@ import { View, SafeAreaView, StyleSheet, TextInput } from 'react-native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
-import SubmitButton from '../components/SubmitButton'
+import Button from '../components/Button'
 
 export default function AddPost({ navigation }) {
   const initialValues = {
@@ -46,7 +46,8 @@ export default function AddPost({ navigation }) {
                 placeholder="Your message"
                 style={styles.bodyInput}
               />
-              <SubmitButton
+              <Button
+                type='submit'
                 onPress={props.handleSubmit}
               />
             </View>

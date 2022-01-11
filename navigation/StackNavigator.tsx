@@ -6,9 +6,7 @@ import HomeScreen from '../screens/HomeScreen'
 import AddPost from '../screens/AddPost'
 import ViewPost from '../screens/ViewPost'
 import EditPost from '../screens/EditPost'
-import BackButton from '../components/BackButton'
-import AddButton from '../components/AddButton'
-import DarkMode from '../components/DarkMode'
+import Button from '../components/Button'
 
 const Stack = createStackNavigator();
 
@@ -22,10 +20,12 @@ const StackNavigator = () => {
           headerTitle: 'Posts App',
           headerRight: () => (
             <View style={{flexDirection:"row"}}>
-              <DarkMode 
+              <Button
+                type='darklight'
                 onPress={() => alert('change to dark mode')}
               />
-              <AddButton
+              <Button
+                type='add'
                 onPress={() => navigation.navigate('AddPost')}
               />
             </View>
@@ -38,12 +38,14 @@ const StackNavigator = () => {
         options={({ navigation }) => ({
           headerTitle: 'Add post',
           headerLeft: () => (
-            <BackButton 
+            <Button
+              type='back' 
               onPress={navigation.goBack}
             />
           ),
           headerRight: () => (
-            <DarkMode 
+            <Button 
+              type='darklight'
               onPress={() => alert('change to dark mode')}
             />
           ),
@@ -55,12 +57,14 @@ const StackNavigator = () => {
         options={({ navigation }) => ({
           headerTitle: 'Post',
           headerLeft: () => (
-            <BackButton 
+            <Button
+              type='back' 
               onPress={navigation.goBack}
             />
           ),
           headerRight: () => (
-            <DarkMode 
+            <Button 
+              type='darklight'
               onPress={() => alert('change to dark mode')}
             />
           ),
@@ -72,12 +76,14 @@ const StackNavigator = () => {
         options={({ navigation }) => ({
           headerTitle: 'Edit post',
           headerLeft: () => (
-            <BackButton 
+            <Button
+              type='back' 
               onPress={navigation.goBack}
             />
           ),
           headerRight: () => (
-            <DarkMode 
+            <Button 
+              type='darklight'
               onPress={() => alert('change to dark mode')}
             />
           ),

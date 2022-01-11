@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, SafeAreaView, FlatList, StyleSheet, Button, TouchableOpacity, RefreshControl } from 'react-native'
+import { Text, View, SafeAreaView, FlatList, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native'
 import axios from 'axios'
 
 export default function HomeScreen({ navigation }) {
