@@ -1,22 +1,10 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, View, SafeAreaView, FlatList, StyleSheet, Button, TouchableOpacity, RefreshControl } from 'react-native'
 import axios from 'axios'
 
 export default function HomeScreen({ navigation }) {
   const [refreshing, setRefreshing] = useState(false)
   const [postsData, setPostsData] = useState([])
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <Button
-          onPress={() => navigation.navigate('AddPost')}
-          title="Add Post"
-          color="#00cc00"
-        />
-      )
-    });
-  }, [navigation])
 
   useEffect(() => {
     loadPostData()

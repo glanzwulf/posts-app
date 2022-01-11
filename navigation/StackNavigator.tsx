@@ -1,11 +1,14 @@
 import 'react-native-gesture-handler'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { Button } from 'react-native'
+import { View } from 'react-native'
 import HomeScreen from '../screens/HomeScreen'
 import AddPost from '../screens/AddPost'
 import ViewPost from '../screens/ViewPost'
 import EditPost from '../screens/EditPost'
+import BackButton from '../components/BackButton'
+import AddButton from '../components/AddButton'
+import DarkMode from '../components/DarkMode'
 
 const Stack = createStackNavigator();
 
@@ -18,11 +21,14 @@ const StackNavigator = () => {
         options={({ navigation }) => ({
           headerTitle: 'Posts App',
           headerRight: () => (
-            <Button
-              onPress={() => navigation.navigate('AddPost')}
-              title="Add Post"
-              color="#00cc00"
-            />
+            <View style={{flexDirection:"row"}}>
+              <DarkMode 
+                onPress={() => alert('change to dark mode')}
+              />
+              <AddButton
+                onPress={() => navigation.navigate('AddPost')}
+              />
+            </View>
           ),
         })}
       />
@@ -32,10 +38,13 @@ const StackNavigator = () => {
         options={({ navigation }) => ({
           headerTitle: 'Add post',
           headerLeft: () => (
-            <Button
+            <BackButton 
               onPress={navigation.goBack}
-              title="Back"
-              color="#FF0000"
+            />
+          ),
+          headerRight: () => (
+            <DarkMode 
+              onPress={() => alert('change to dark mode')}
             />
           ),
         })}
@@ -44,12 +53,15 @@ const StackNavigator = () => {
         name="ViewPost"
         component={ViewPost} 
         options={({ navigation }) => ({
-          headerTitle: 'View post',
+          headerTitle: 'Post',
           headerLeft: () => (
-            <Button
+            <BackButton 
               onPress={navigation.goBack}
-              title="Back"
-              color="#FF0000"
+            />
+          ),
+          headerRight: () => (
+            <DarkMode 
+              onPress={() => alert('change to dark mode')}
             />
           ),
         })}
@@ -60,10 +72,13 @@ const StackNavigator = () => {
         options={({ navigation }) => ({
           headerTitle: 'Edit post',
           headerLeft: () => (
-            <Button
+            <BackButton 
               onPress={navigation.goBack}
-              title="Back"
-              color="#FF0000"
+            />
+          ),
+          headerRight: () => (
+            <DarkMode 
+              onPress={() => alert('change to dark mode')}
             />
           ),
         })}

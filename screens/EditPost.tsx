@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { View, SafeAreaView, StyleSheet, TextInput, Button, Text, Alert } from 'react-native'
+import { View, SafeAreaView, StyleSheet, TextInput, Text, Alert } from 'react-native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import SaveButton from '../components/SaveButton';
 
 export default function EditPost({ navigation, route }) {
   const [postsData, setPostsData] = useState([])
@@ -76,11 +77,7 @@ export default function EditPost({ navigation, route }) {
                 multiline={true}
                 style={styles.bodyInput}
               />
-              <Button
-                onPress={props.handleSubmit}
-                title="Save"
-                color="#00cc00"
-              />
+              <SaveButton onPress={props.handleSubmit} />
             </View>
           )}
         </Formik>
