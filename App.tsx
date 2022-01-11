@@ -1,13 +1,10 @@
 
 import 'react-native-gesture-handler'
 import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
 import { StatusBar } from 'expo-status-bar';
 import DrawerMenu from './navigation/DrawerMenu'
-
-const Stack = createStackNavigator();
 
 export default function App() {
   const scheme = useColorScheme()
@@ -22,7 +19,7 @@ export default function App() {
       border: 'rgb(199, 199, 204)',
       notification: 'rgb(72, 45, 109)',
     },
-  };
+  }
 
   return (
     <AppearanceProvider>

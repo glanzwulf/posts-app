@@ -5,7 +5,7 @@ import Button from '../components/Button'
 
 export default function ViewPost({ navigation, route }) {
   const [postsData, setPostsData] = useState([])
-  const { id } = route.params;
+  const { id } = route.params
 
   useEffect(() => {
     axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
