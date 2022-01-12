@@ -20,7 +20,7 @@ const Button = ({ onPress, type } : ButtonProps) => {
       <TouchableHighlight
         style={[styles.button]}
         onPress={onPress}
-        underlayColor="#DDDDDD"
+        underlayColor="none"
       >
         <Ionicons name="add" size={28} style={[styles.icon]} />
       </TouchableHighlight>
@@ -30,7 +30,7 @@ const Button = ({ onPress, type } : ButtonProps) => {
       <TouchableHighlight
         style={[styles.button]}
         onPress={onPress}
-        underlayColor="#DDDDDD"
+        underlayColor="none"
       >
         <Feather name="edit-3" size={23} style={[styles.icon]} />
       </TouchableHighlight>
@@ -40,9 +40,9 @@ const Button = ({ onPress, type } : ButtonProps) => {
       <TouchableHighlight
         style={[styles.button]}
         onPress={onPress}
-        underlayColor="#DDDDDD"
+        underlayColor="none"
       >
-        <Text style={styles.deleteLabel}>Delete post</Text>
+        <Text style={styles.deleteLabel}>Delete</Text>
       </TouchableHighlight>
     </View>
   ) : type === 'submit' ? (
@@ -50,9 +50,9 @@ const Button = ({ onPress, type } : ButtonProps) => {
       <TouchableHighlight
         style={[styles.button]}
         onPress={onPress}
-        underlayColor="#DDDDDD"
+        underlayColor="none"
       >
-        <Text style={[styles.submitLabel]}>Submit post</Text>
+        <Text style={[styles.submitLabel]}>Submit</Text>
       </TouchableHighlight>
     </View>
   ) : type === 'save' ? (
@@ -60,9 +60,9 @@ const Button = ({ onPress, type } : ButtonProps) => {
       <TouchableHighlight
         style={[styles.button]}
         onPress={onPress}
-        underlayColor="#DDDDDD"
+        underlayColor="none"
       >
-        <Text style={[styles.saveLabel]}>Save post</Text>
+        <Text style={[styles.saveLabel]}>Save</Text>
       </TouchableHighlight>
     </View>
   ) : type === 'back' ? (
@@ -70,7 +70,7 @@ const Button = ({ onPress, type } : ButtonProps) => {
     <TouchableHighlight
       style={[styles.button]}
       onPress={onPress}
-      underlayColor="#DDDDDD"
+      underlayColor="none"
     >
       <Ionicons name="arrow-back-sharp" size={24} style={[styles.icon]} />
     </TouchableHighlight>
@@ -80,7 +80,7 @@ const Button = ({ onPress, type } : ButtonProps) => {
       <TouchableHighlight
         style={[styles.button]}
         onPress={onPress}
-        underlayColor="#DDDDDD"
+        underlayColor="none"
       >
         <MaterialCommunityIcons name="theme-light-dark" size={24} style={[styles.icon]} />
       </TouchableHighlight>
@@ -90,9 +90,9 @@ const Button = ({ onPress, type } : ButtonProps) => {
       <TouchableHighlight
         style={[styles.button]}
         onPress={onPress}
-        underlayColor="#DDDDDD"
+        underlayColor="none"
       >
-        <Ionicons name="filter-sharp" size={24} cstyle={[styles.icon]} />
+        <Ionicons name="filter-sharp" size={24} style={[styles.icon]} />
       </TouchableHighlight>
     </View>
   ) : null
@@ -107,7 +107,7 @@ const makeStyles = (colors: any) => StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 3,
+    borderRadius: 6,
     paddingVertical: 8,
     paddingHorizontal: 12,
     color: colors.background
