@@ -4,7 +4,7 @@ import { SafeAreaView, StyleSheet, Text } from 'react-native'
 export default function BurgerScreen() {
   return (
     <SafeAreaView style={styles.drawerContainer}>
-      <Text style={styles.text}>Creating a generic drawer content</Text>
+      <Text style={styles.text}>Hello! My name is Vladyslav and I like doing front-end work. If you liked this project, say hi!</Text>
     </SafeAreaView>
   )
 }
