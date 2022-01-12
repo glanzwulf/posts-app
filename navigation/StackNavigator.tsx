@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen'
 import AddPost from '../screens/AddPost'
 import ViewPost from '../screens/ViewPost'
 import EditPost from '../screens/EditPost'
+import FilterScreen from '../screens/FilterScreen'
 import Button from '../components/Button'
 import { ThemeContext } from '../App'
 
@@ -60,6 +61,19 @@ const StackNavigator = () => {
         component={EditPost} 
         options={({ navigation }) => ({
           headerTitle: 'Edit post',
+          headerLeft: () => (
+            <Button
+              type='back' 
+              onPress={navigation.goBack}
+            />
+          ),
+        })}
+      />
+      <Stack.Screen 
+        name="FilterScreen"
+        component={FilterScreen} 
+        options={({ navigation }) => ({
+          headerTitle: 'Filtered list',
           headerLeft: () => (
             <Button
               type='back' 
