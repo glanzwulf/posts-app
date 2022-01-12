@@ -31,7 +31,7 @@ export default function EditPost({ navigation, route }) {
         {
           text: "Yes",
           onPress: () => {
-            axios.put(`https://jsonplaceholder.typicode.com/posts/${values.id}`, { title: values.title, body: values.body, userId: 0 })
+            axios.patch(`https://jsonplaceholder.typicode.com/posts/${values.id}`, { title: values.title, body: values.body })
             alert('Edited')
             navigation.navigate('ViewPost', {id: id})
           },
