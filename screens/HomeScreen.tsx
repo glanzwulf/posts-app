@@ -62,29 +62,25 @@ export default function HomeScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
+          setModalVisible(!modalVisible)
         }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={styles.modalHeader}>
-              <Text style={styles.modalHeader}>Select a user to filter posts</Text>
-            </View>
-            <View style={styles.modalInterior}>
-              {userData.map((user) => (
-                <Pressable key={user.id}
-                  style={[styles.button]}
-                  onPress={() => filterStuff(user.id)}>
-                  <Text style={styles.textStyle}>User id: {user.id}</Text>
-                </Pressable>
-              ))}
-            </View>
-          </View>
-        </View>
+          <TouchableOpacity style={styles.centeredView} onPress={() => setModalVisible(!modalVisible)}>
+            <TouchableOpacity style={styles.modalView} activeOpacity={1}>
+              <SafeAreaView style={styles.modalInterior}>
+                {userData.map((user) => (
+                  <Pressable key={user.id}
+                    style={[styles.button]}
+                    onPress={() => filterStuff(user.id)}>
+                    <Text style={styles.textStyle}>User id: {user.id}</Text>
+                  </Pressable>
+                ))}
+              </SafeAreaView>
+            </TouchableOpacity>
+          </TouchableOpacity>
       </Modal>
       <FlatList
         data={postsData}
@@ -117,18 +113,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: '100%',
   },
   modalView: {
-    flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
     borderRadius: 20,
-    alignContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
+    marginLeft: 10,
+    marginTop: 90,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -137,12 +130,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    maxHeight: 300,
-    maxWidth: 320,
-  },
-  modalHeader: {
-    marginTop: 10,
-    marginBottom: 0,
+    maxWidth: 120,
+    maxHeight: 500,
   },
   modalInterior: {
     flex: 1,
