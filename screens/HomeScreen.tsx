@@ -1,14 +1,16 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { Text, View, SafeAreaView, FlatList, StyleSheet, TouchableOpacity, RefreshControl, Modal, Alert, Pressable } from 'react-native'
+import { Text, View, SafeAreaView, FlatList, StyleSheet, TouchableOpacity, RefreshControl, Modal, Pressable } from 'react-native'
 import axios from 'axios'
 import Button from '../components/Button'
+import { useTheme } from '@react-navigation/native'
 
 export default function HomeScreen({ navigation }) {
   const [refreshing, setRefreshing] = useState(false)
   const [postsData, setPostsData] = useState([])
-  const [filterData, setFilterData] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
   const [userData, setUserData] = useState([])
+  const { colors } = useTheme()
+  const styles = makeStyles(colors)
 
   useEffect(() => {
     loadPostData(), loadUserData()
@@ -26,7 +28,7 @@ export default function HomeScreen({ navigation }) {
   }, [navigation])
 
   const loadPostData = () => {
-    axios.get(`https://jsonplaceholder.typicode.com/posts${filterData}`)
+    axios.get(`https://jsonplaceholder.typicode.com/posts`)
     .then((response) => {
       setPostsData(response.data), 
       setRefreshing(false)
@@ -94,12 +96,12 @@ export default function HomeScreen({ navigation }) {
   )
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (colors: any) => StyleSheet.create({
   container: {
     flex: 1,
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: colors.primary,
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
@@ -107,17 +109,19 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
+    color: colors.text
   },
   user_id: {
     fontSize: 14,
     fontWeight: 'bold',
+    color: colors.text
   },
   centeredView: {
     height: '100%',
   },
   modalView: {
     flexDirection: 'column',
-    backgroundColor: 'white',
+    backgroundColor: colors.card,
     borderRadius: 20,
     alignSelf: 'flex-start',
     marginLeft: 10,
@@ -146,10 +150,11 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
     margin: 4,
-    backgroundColor: '#F194FF',
+    backgroundColor: colors.primary,
   },
   textStyle: {
-    color: 'white',
+    color: colors.text,
+    fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',
   },

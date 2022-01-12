@@ -40,6 +40,7 @@ export default function AddPost({ navigation }) {
                 value={props.values.title}
                 autoFocus
                 placeholder="Title"
+                placeholderTextColor="#DCDCDC"
                 style={styles.input}
               />
               <TextInput
@@ -47,6 +48,7 @@ export default function AddPost({ navigation }) {
                 onBlur={props.handleBlur('body')}
                 value={props.values.body}
                 placeholder="Your message"
+                placeholderTextColor="#DCDCDC"
                 style={styles.bodyInput}
               />
               <Button
@@ -71,6 +73,7 @@ const makeStyles = (colors: any) => StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: colors.text,
   },
   error: {
     margin: 8,
@@ -84,7 +87,8 @@ const makeStyles = (colors: any) => StyleSheet.create({
     width: '100%',
     borderColor: '#ddd',
     borderWidth: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.card,
+    color: colors.text,
     marginBottom: 5,
     borderRadius: 6,
   },
@@ -94,7 +98,8 @@ const makeStyles = (colors: any) => StyleSheet.create({
     width: '100%',
     borderColor: '#ddd',
     borderWidth: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.card,
+    color: colors.text,
     marginBottom: 5,
     borderRadius: 6,
   },

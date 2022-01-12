@@ -68,6 +68,7 @@ export default function EditPost({ navigation, route }) {
                 value={props.values.title}
                 autoFocus
                 placeholder="Title"
+                placeholderTextColor="#DCDCDC"
                 multiline={true}
                 style={styles.input}
               />
@@ -76,7 +77,8 @@ export default function EditPost({ navigation, route }) {
                 onChangeText={props.handleChange('body')}
                 onBlur={props.handleBlur('body')}
                 value={props.values.body}
-                placeholder="Your message"
+                placeholder="Message"
+                placeholderTextColor="#DCDCDC"
                 multiline={true}
                 style={styles.bodyInput}
               />
@@ -107,6 +109,7 @@ const makeStyles = (colors: any) => StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: colors.text,
   },
   error: {
     margin: 8,
@@ -120,7 +123,8 @@ const makeStyles = (colors: any) => StyleSheet.create({
     width: '100%',
     borderColor: '#ddd',
     borderWidth: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.card,
+    color: colors.text,
     marginBottom: 5,
     borderRadius: 6,
   },
@@ -130,7 +134,8 @@ const makeStyles = (colors: any) => StyleSheet.create({
     width: '100%',
     borderColor: '#ddd',
     borderWidth: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.card,
+    color: colors.text,
     marginBottom: 5,
     borderRadius: 6,
   },

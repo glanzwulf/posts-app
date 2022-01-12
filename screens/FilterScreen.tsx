@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Text, View, SafeAreaView, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
 import axios from 'axios'
+import { useTheme } from '@react-navigation/native'
 
 export default function FilterScreen({ navigation, route }) {
   const [postsData, setPostsData] = useState([])
   const { id } = route.params
+  const { colors } = useTheme()
+  const styles = makeStyles(colors)
   
   useEffect(() => {
     axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
@@ -36,12 +39,12 @@ export default function FilterScreen({ navigation, route }) {
   )
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (colors: any) => StyleSheet.create({
   container: {
     flex: 1,
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: colors.primary,
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
@@ -49,9 +52,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
+    color: colors.text
   },
   user_id: {
     fontSize: 14,
     fontWeight: 'bold',
+    color: colors.text
   },
 });
